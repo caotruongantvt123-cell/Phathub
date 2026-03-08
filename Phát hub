@@ -1,0 +1,52 @@
+-- SCRIPT TROLL ADMIN PANEL BY PHAT
+local Player = game.Players.LocalPlayer
+local PlayerGui = Player:WaitForChild("PlayerGui")
+
+-- 1. TẠO GIAO DIỆN MÀN HÌNH TRẮNG
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Name = "AdminTrollGui"
+ScreenGui.Parent = PlayerGui
+ScreenGui.IgnoreGuiInset = true -- Phủ kín cả thanh trên của Roblox
+
+local Frame = Instance.new("Frame")
+Frame.Size = UDim2.new(1, 0, 1, 0)
+Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255) -- Màu trắng tinh
+Frame.BorderSizePixel = 0
+Frame.Parent = ScreenGui
+
+-- 2. DÒNG CHỮ THÔNG BÁO
+local TextLabel = Instance.new("TextLabel")
+TextLabel.Size = UDim2.new(0.8, 0, 0.2, 0)
+TextLabel.Position = UDim2.new(0.1, 0, 0.4, 0)
+TextLabel.BackgroundTransparency = 1
+TextLabel.TextColor3 = Color3.fromRGB(0, 0, 0) -- Chữ đen cho nổi trên nền trắng
+TextLabel.TextScaled = true
+TextLabel.Font = Enum.Font.SpecialElite -- Kiểu chữ nhìn cho giống hacker
+TextLabel.Text = "Đang loadstring..."
+TextLabel.Parent = Frame
+
+-- 3. HIỆU ỨNG CHỮ CHẠY TỪNG BƯỚC
+task.spawn(function()
+    task.wait(2)
+    TextLabel.Text = "Đang kiểm tra quyền Admin..."
+    task.wait(3)
+    TextLabel.Text = "Chúc mừng! Script Admin Panel đã load xong!!"
+    TextLabel.TextColor3 = Color3.fromRGB(0, 170, 0) -- Đổi sang màu xanh lá cho uy tín
+    
+    task.wait(5) -- Tổng cộng khoảng 10 giây
+    
+    -- 4. BIẾN MẤT VÀ TRẢ LẠI MÀN HÌNH BÌNH THƯỜNG
+    TextLabel.Text = "HỆ THỐNG ĐÃ KÍCH HOẠT!"
+    task.wait(1)
+    ScreenGui:Destroy() -- Xóa màn hình trắng
+end)
+
+-- BONUS: HIỆU ỨNG NHÁY MÀN HÌNH CHO GIỐNG HACK THẬT
+task.spawn(function()
+    for i = 1, 5 do
+        Frame.BackgroundTransparency = 0.5
+        task.wait(0.1)
+        Frame.BackgroundTransparency = 0
+        task.wait(0.1)
+    end
+end)
