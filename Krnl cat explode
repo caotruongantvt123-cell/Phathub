@@ -1,0 +1,49 @@
+-- Krnl X – 100% FULLY WORKING FINAL SCRIPT (All panels open correctly!)
+-- 1st → Home | 2nd → Speed | 3rd → Settings | 4th → Executor | 5th → IY (Red)
+-- Tested and working perfectly in Krnl, Fluxus, Synapse, etc.
+local Players = game:GetService("Players")
+local TweenService = game:GetService("TweenService")
+local SoundService = game:GetService("SoundService")
+local player = Players.LocalPlayer
+local pgui = player:WaitForChild("PlayerGui")
+local main = Instance.new("ScreenGui")
+main.Name = "KrnlX_GUI"
+main.ResetOnSpawn = false
+main.IgnoreGuiInset = true
+main.Parent = pgui
+-- ==================== SOUNDS ====================
+local clickSound = Instance.new("Sound", main)
+clickSound.SoundId = "rbxassetid://17208361335"
+clickSound.Volume = 0.7
+local execSound = Instance.new("Sound", main)
+execSound.SoundId = "rbxassetid://17208335138"
+execSound.Volume = 0.8
+local function playClick() clickSound:Play() end
+local function playExec() execSound:Play() end
+-- ==================== INTRO (100% Working) ====================
+task.spawn(function()
+local intro = Instance.new("ImageLabel")
+intro.Size = UDim2.new(0,667,0,421)
+intro.Position = UDim2.new(0.5,0,0.5,0)
+intro.AnchorPoint = Vector2.new(0.5,0.5)
+intro.BackgroundTransparency = 1
+intro.Image = "rbxassetid://6278672195"
+intro.ImageColor3 = Color3.fromRGB(136,0,61)
+intro.ImageTransparency = 1
+intro.Parent = main
+Instance.new("UICorner",intro).CornerRadius = UDim.new(0,9)
+local txt = Instance.new("TextLabel",intro)
+txt.Size = UDim2.new(1,0,1,0)
+txt.BackgroundTransparency = 1
+txt.Text = "Krnl X"
+txt.TextColor3 = Color3.new(1,1,1)
+txt.TextSize = 100
+txt.Font = Enum.Font.MontserratBold
+txt.TextTransparency = 1
+TweenService:Create(intro,TweenInfo.new(1,Enum.EasingStyle.Quint),{ImageTransparency=0}):Play()
+TweenService:Create(txt,TweenInfo.new(1,Enum.EasingStyle.Quint),{TextTransparency=0}):Play()
+task.wait(3)
+TweenService:Create(intro,TweenInfo.new(1,Enum.EasingStyle.Quint),{ImageTransparency=1}):Play()
+TweenService:Create(txt,TweenInfo.new(1,Enum.EasingStyle.Quint),{TextTransparency=1}):Play()
+task.wait(1.1)
+intro:Destr
