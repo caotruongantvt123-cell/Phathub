@@ -1,0 +1,105 @@
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+
+local Window = Rayfield:CreateWindow({
+   Name = "PHÁT TSB V1 | THE STRONGEST 👑",
+   LoadingTitle = "Đang nạp hệ thống Multi-Hub...",
+   LoadingSubtitle = "By LOVUONGDAIDE9950",
+   ConfigurationSaving = { Enabled = false },
+   KeySystem = false 
+})
+
+local lp = game.Players.LocalPlayer
+
+-- ================= TAB 1: EXTERNAL SCRIPTS (HÀNG KHỦNG) =================
+local ExternalTab = Window:CreateTab("External Scripts 📜", 4483362458)
+
+ExternalTab:CreateSection("Danh Sách Script Liên Kết")
+
+ExternalTab:CreateButton({
+   Name = "Fake Dash (KJ Style) 💨",
+   Callback = function()
+       pcall(function()
+           loadstring(game:HttpGet("https://raw.githubusercontent.com/Cyborg883/FakeDash/refs/heads/main/Protected_5833389828844912.lua"))()
+       end)
+   end,
+})
+
+ExternalTab:CreateButton({
+   Name = "Yqantg Hub V3.3 🛠️",
+   Callback = function()
+       pcall(function()
+           loadstring(game:HttpGet("https://raw.githubusercontent.com/yqantg-pixel/Find/refs/heads/main/Protected_3334988263341522.lua.txt"))()
+       end)
+   end,
+})
+
+ExternalTab:CreateButton({
+   Name = "Dovi Hub (New Update) ⚡",
+   Callback = function()
+       -- Thực thi Dovi Hub từ link bạn cung cấp
+       pcall(function()
+           loadstring(game:HttpGet("https://raw.githubusercontent.com/needanewphone32-eng/tsbfiles/refs/heads/main/Main1.lua"))()
+       end)
+       Rayfield:Notify({Title = "Dovi Hub", Content = "Đã thực thi script thành công!"})
+   end,
+})
+
+-- ================= TAB 2: CHỨC NĂNG PHỤ (SPECIAL) =================
+local SpecialTab = Window:CreateTab("Special Features ⚡", 4483362458)
+
+SpecialTab:CreateButton({
+   Name = "Tàng Hình (Vẫn đánh được người) 👻",
+   Callback = function()
+       pcall(function()
+           local char = lp.Character
+           for _, v in pairs(char:GetDescendants()) do
+               if v:IsA("BasePart") or v:IsA("Decal") then
+                   v.Transparency = 0.5
+                   if v.Name == "HumanoidRootPart" then v.Transparency = 1 end
+               end
+           end
+       end)
+   end,
+})
+
+SpecialTab:CreateButton({
+   Name = "FullBright (Sáng rực rỡ) ☀️",
+   Callback = function()
+       local l = game:GetService("Lighting")
+       l.Brightness = 2
+       l.ClockTime = 14
+       l.FogEnd = 100000
+       l.GlobalShadows = false
+   end,
+})
+
+SpecialTab:CreateToggle({
+   Name = "Float Fly (Bay lơ lửng) ✈️",
+   CurrentValue = false,
+   Callback = function(v)
+       if v then
+           loadstring(game:HttpGet("https://raw.githubusercontent.com/XNEOFF/FlyGuiV3/main/FlyGuiV3.txt"))()
+       end
+   end,
+})
+
+SpecialTab:CreateButton({
+   Name = "Tua Ngược Thời Gian (Lag Back) ⏳",
+   Callback = function()
+       local p = lp.Character.HumanoidRootPart.CFrame
+       task.wait(0.1)
+       lp.Character.HumanoidRootPart.CFrame = p
+   end,
+})
+
+-- ================= TAB 3: HỆ THỐNG =================
+local SettingTab = Window:CreateTab("Settings ⚙️", 4483362458)
+SettingTab:CreateSlider({
+   Name = "WalkSpeed",
+   Range = {16, 500},
+   Increment = 5,
+   CurrentValue = 16,
+   Callback = function(v) lp.Character.Humanoid.WalkSpeed = v end
+})
+
+Rayfield:Notify({Title = "Phát TSB V1", Content = "Đã cập nhật Dovi Hub. Sẵn sàng chiến đấu!"})
