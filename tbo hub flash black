@@ -1,0 +1,83 @@
+-- PHÁT HUB | UNIVERSAL KEY SYSTEM (BLACK FLASH & TBO)
+local Player = game.Players.LocalPlayer
+local KeyInput = ""
+local CorrectKey = "Phat hacker lỏ"
+
+-- 1. GIAO DIỆN GET KEY
+local ScreenGui = Instance.new("ScreenGui", Player.PlayerGui)
+local MainFrame = Instance.new("Frame", ScreenGui)
+MainFrame.Size = UDim2.new(0, 350, 0, 180)
+MainFrame.Position = UDim2.new(0.5, -175, 0.4, 0)
+MainFrame.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+MainFrame.BorderSizePixel = 0
+Instance.new("UICorner", MainFrame)
+
+local Title = Instance.new("TextLabel", MainFrame)
+Title.Size = UDim2.new(1, 0, 0, 40)
+Title.Text = "PHÁT HUB - KEY SYSTEM"
+Title.TextColor3 = Color3.new(1, 1, 1)
+Title.Font = Enum.Font.GothamBold
+Title.TextSize = 18
+Title.BackgroundTransparency = 1
+
+local TextBox = Instance.new("TextBox", MainFrame)
+TextBox.Size = UDim2.new(0, 250, 0, 40)
+TextBox.Position = UDim2.new(0.5, -125, 0.4, 0)
+TextBox.PlaceholderText = "Nhập Key vào đây..."
+TextBox.Text = ""
+TextBox.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+TextBox.TextColor3 = Color3.new(1, 1, 1)
+Instance.new("UICorner", TextBox)
+
+local SubmitBtn = Instance.new("TextButton", MainFrame)
+SubmitBtn.Size = UDim2.new(0, 150, 0, 40)
+SubmitBtn.Position = UDim2.new(0.5, -75, 0.75, 0)
+SubmitBtn.Text = "CHECK KEY"
+SubmitBtn.BackgroundColor3 = Color3.fromRGB(170, 0, 255)
+SubmitBtn.TextColor3 = Color3.new(1, 1, 1)
+SubmitBtn.Font = Enum.Font.GothamBold
+Instance.new("UICorner", SubmitBtn)
+
+-- 2. HÀM TỰ ĐỘNG CHAT
+local function CustomChat(msg)
+    local chatEvents = game:GetService("ReplicatedStorage"):FindFirstChild("DefaultChatSystemChatEvents")
+    if chatEvents and chatEvents:FindFirstChild("SayMessageRequest") then
+        chatEvents.SayMessageRequest:FireServer(msg, "All")
+    else
+        local textChannel = game:GetService("TextChatService"):FindFirstChild("TextChannels") and game:GetService("TextChatService").TextChannels:FindFirstChild("RBXGeneral")
+        if textChannel then textChannel:SendAsync(msg) end
+    end
+end
+
+-- 3. LOGIC KIỂM TRA KEY & LOAD SCRIPT
+SubmitBtn.MouseButton1Click:Connect(function()
+    if TextBox.Text == CorrectKey then
+        -- Thành công
+        Title.Text = "KEY ĐÚNG! ĐANG LOAD..."
+        Title.TextColor3 = Color3.new(0, 1, 0)
+        task.wait(1)
+        
+        -- Chat thông báo
+        CustomChat("menu black flash and tbo hub by phat hacker lỏ")
+        
+        -- Xóa GUI Key
+        ScreenGui:Destroy()
+        
+        -- LOAD 2 SCRIPT CÙNG LÚC
+        task.spawn(function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/ggab2351-stack/Jjs/refs/heads/main/Betterblackflashchain"))()
+        end)
+        
+        task.spawn(function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/cool5013/TBO/main/TBOscript"))()
+        end)
+    else
+        -- Thất bại
+        Title.Text = "SAI KEY! VUI LÒNG THỬ LẠI"
+        Title.TextColor3 = Color3.new(1, 0, 0)
+        TextBox.Text = ""
+        task.wait(2)
+        Title.Text = "PHÁT HUB - KEY SYSTEM"
+        Title.TextColor3 = Color3.new(1, 1, 1)
+    end
+end)
