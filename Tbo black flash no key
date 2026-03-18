@@ -1,0 +1,49 @@
+-- PHÁT HUB | UNIVERSAL NO KEY (BLACK FLASH & TBO)
+local Player = game.Players.LocalPlayer
+
+-- 1. THÔNG BÁO KHỞI ĐỘNG (STYLE HACKER LỎ)
+local function Notify(txt)
+    game:GetService("StarterGui"):SetCore("SendNotification", {
+        Title = "Phát Hub Universal",
+        Text = txt,
+        Duration = 5
+    })
+end
+
+Notify("Đang kích hoạt hệ thống... Không cần Key!")
+
+-- 2. HÀM TỰ ĐỘNG CHAT THƯƠNG HIỆU
+local function CustomChat(msg)
+    local chatEvents = game:GetService("ReplicatedStorage"):FindFirstChild("DefaultChatSystemChatEvents")
+    if chatEvents and chatEvents:FindFirstChild("SayMessageRequest") then
+        chatEvents.SayMessageRequest:FireServer(msg, "All")
+    else
+        local textChannel = game:GetService("TextChatService"):FindFirstChild("TextChannels") and game:GetService("TextChatService").TextChannels:FindFirstChild("RBXGeneral")
+        if textChannel then textChannel:SendAsync(msg) end
+    end
+end
+
+-- 3. KÍCH HOẠT CHUỖI LỆNH
+task.spawn(function()
+    -- Chat thông báo trước khi load
+    CustomChat("menu black flash and tbo hub by phat hacker lỏ")
+    task.wait(0.5)
+    
+    -- LOAD SCRIPT 1: BETTER BLACK FLASH
+    Notify("Loading: Black Flash Chain...")
+    task.spawn(function()
+        pcall(function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/ggab2351-stack/Jjs/refs/heads/main/Betterblackflashchain"))()
+        end)
+    end)
+    
+    -- LOAD SCRIPT 2: TBO HUB
+    Notify("Loading: TBO Hub...")
+    task.spawn(function()
+        pcall(function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/cool5013/TBO/main/TBOscript"))()
+        end)
+    end)
+    
+    Notify("Tất cả đã sẵn sàng! Chúc Phát quẩy vui vẻ.")
+end)
