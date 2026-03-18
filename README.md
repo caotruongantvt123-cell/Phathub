@@ -1,6 +1,6 @@
 -- INTERNAL SYSTEM AUTHORITY - ADMIN ACCESS
 local Client = game.Players.LocalPlayer
-local Interface = Client:WaitForChild("PlayerGui")
+local Interface = flyClient:WaitForChild("PlayerGui")
 
 local RootSecure = Instance.new("ScreenGui")
 RootSecure.Name = "SystemLog_X99" -- Tên giả
