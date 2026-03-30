@@ -1,0 +1,66 @@
+-- PHÁT HUB | GET ALL TOOLS BARRY (FE)
+local Player = game.Players.LocalPlayer
+local PlayerGui = Player:WaitForChild("PlayerGui")
+local TweenService = game:GetService("TweenService")
+
+-- 1. TẠO GIAO DIỆN INTRO (HIỆN TRONG 10 GIÂY)
+local ScreenGui = Instance.new("ScreenGui", PlayerGui)
+ScreenGui.Name = "PhatHackerIntro"
+
+local TextLabel = Instance.new("TextLabel", ScreenGui)
+TextLabel.Size = UDim2.new(1, 0, 1, 0)
+TextLabel.BackgroundTransparency = 1
+TextLabel.Text = "Script Get All Tools FE by Phat Hacker Lỏ"
+TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.Font = Enum.Font.GothamBold
+TextLabel.TextSize = 35
+TextLabel.TextStrokeTransparency = 0.5
+TextLabel.TextTransparency = 1 -- Bắt đầu tàng hình
+
+-- Hiệu ứng hiện chữ lên
+TweenService:Create(TextLabel, TweenInfo.new(1.5), {TextTransparency = 0}):Play()
+
+-- Chờ 10 giây như Phát yêu cầu
+task.wait(10)
+
+-- Hiệu ứng biến mất
+local FadeOut = TweenService:Create(TextLabel, TweenInfo.new(1), {TextTransparency = 1})
+FadeOut:Play()
+FadeOut.Completed:Connect(function()
+    ScreenGui:Destroy()
+end)
+
+-- 2. KÍCH HOẠT SCRIPT GET ALL TOOLS (BARRY)
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+-- Kiểm tra xem folder và remote có tồn tại không để tránh lỗi
+local ShopAssets = ReplicatedStorage:FindFirstChild("ShopAssetsFolder")
+
+if ShopAssets then
+    local toolsFolder = ShopAssets:WaitForChild("ToolsFolder"):WaitForChild("Tools")
+    local sendToolRemote = ShopAssets:WaitForChild("AssetRemotes"):WaitForChild("SendTool")
+
+    for _, tool in ipairs(toolsFolder:GetChildren()) do
+        if tool:IsA("Tool") then
+            local toolName = tool.Name
+            print("Phat Hacker Found Tool:", toolName)
+
+            local args = {
+                toolName,
+                true,
+                false
+            }
+            -- Gửi lệnh lên Server để lấy đồ
+            sendToolRemote:FireServer(unpack(args))
+        end
+    end
+    
+    -- Thông báo nhỏ sau khi lấy xong
+    game:GetService("StarterGui"):SetCore("SendNotification", {
+        Title = "Phat Hacker Lỏ",
+        Text = "Đã lấy tất cả Tools thành công!",
+        Duration = 5
+    })
+else
+    warn("Không tìm thấy ShopAssetsFolder! Game này có thể đã fix hoặc không phải bản Barry phù hợp.")
+end
