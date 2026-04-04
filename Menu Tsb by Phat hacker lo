@@ -1,0 +1,113 @@
+-- PHÁT THE STRONGEST BATTLEGROUNDS | RAYFIELD UI
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+
+-- 1. TẠO WINDOW VỚI HỆ THỐNG KEY
+local Window = Rayfield:CreateWindow({
+   Name = "Phát The Strongest Battlegrounds ⚔️",
+   LoadingTitle = "Phát Hub - TSB Edition",
+   LoadingSubtitle = "by Phát Hacker Lỏ",
+   ConfigurationSaving = {
+      Enabled = true,
+      FolderName = "PhatHub_TSB",
+      FileName = "MainConfig"
+   },
+   KeySystem = true, -- BẬT HỆ THỐNG KEY
+   KeySettings = {
+      Title = "Hệ thống Key - Phát Hub",
+      Subtitle = "Nhập Key để sử dụng",
+      Note = "Key là: Phat hacker lỏ On Top", -- Gợi ý Key cho người dùng
+      FileName = "PhatHubKey",
+      SaveKey = true,
+      GrabKeyFromSite = false,
+      Key = {"Phat hacker lỏ On Top"} -- KEY CHÍNH XÁC
+   }
+})
+
+-- 2. TẠO TAB CHÍNH
+local MainTab = Window:CreateTab("Tổng Hợp Hub 📂", 4483345998)
+
+-- CHỨC NĂNG 1: SUPA TECH V2
+MainTab:CreateButton({
+   Name = "🔥 Supa Tech V2",
+   Callback = function()
+      loadstring(game:HttpGet("https://rawscripts.net/raw/The-Strongest-Battlegrounds-Supa-tech-v2-77454"))()
+   end,
+})
+
+-- CHỨC NĂNG 2: FAKE DASH
+MainTab:CreateButton({
+   Name = "💨 Fake Dash",
+   Callback = function()
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/Cyborg883/FakeDash/refs/heads/main/Protected_5833389828844912.lua"))()
+   end,
+})
+
+-- CHỨC NĂNG 3: MINH NHAT HUB (KEYLESS)
+MainTab:CreateButton({
+   Name = "🌟 MinhNhat Hub (Rayfield Menu)",
+   Callback = function()
+      loadstring(game:HttpGet("https://rawscripts.net/raw/The-Strongest-Battlegrounds-Tsb-MinhNhat-script-keyless-110881"))()
+   end,
+})
+
+-- CHỨC NĂNG 4: DOVI HUB (CẦN KEY)
+MainTab:CreateButton({
+   Name = "🛠️ Dovi Hub (Need Key)",
+   Callback = function()
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/needanewphone32-eng/tsbfiles/refs/heads/main/Main.lua"))()
+   end,
+})
+
+-- CHỨC NĂNG 5: DOVI HUB V2 (CẦN KEY)
+MainTab:CreateButton({
+   Name = "🛠️ Dovi Hub V2 (Need Key)",
+   Callback = function()
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/needanewphone32-eng/tsbfiles/refs/heads/main/Main1.lua"))()
+   end,
+})
+
+-- CHỨC NĂNG 6: TTHANH HUB
+MainTab:CreateButton({
+   Name = "🌀 Tthanh Hub (Tong Hop Tech)",
+   Callback = function()
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/kaimm2/TSB/refs/heads/main/Tthanh%20Tong%20Hop%20Tech.txt"))()
+   end,
+})
+
+-- CHỨC NĂNG 7: THANHDUY HUB
+MainTab:CreateButton({
+   Name = "⚔️ ThanhDuy Hub (Full Script 2026)",
+   Callback = function()
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/Duytsb1609/Tong-Hop-Script-The-Strongest-Battlegounds-2026/refs/heads/main/Tong%20Hop%20Script%20The%20Strongest%20Battlegounds"))()
+   end,
+})
+
+-- CHỨC NĂNG 8: TRASH CAN
+MainTab:CreateButton({
+   Name = "🗑️ Trash Can Man",
+   Callback = function()
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/yes1nt/yes/refs/heads/main/Trashcan%20Man", true))()
+   end,
+})
+
+-- CHỨC NĂNG 9: HIT BOX (CẢNH BÁO)
+MainTab:CreateButton({
+   Name = "🎯 Hit Box (Lưu ý: Chết phải Rejoin)",
+   Callback = function()
+      Rayfield:Notify({
+         Title = "Cảnh báo Hitbox",
+         Content = "Nếu bạn chết, hãy thoát game vào lại để tránh lỗi!",
+         Duration = 5,
+         Image = 4483345998,
+      })
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/catwljz/Scripts/refs/heads/main/SonicbyReapvitalized.txt"))()
+   end,
+})
+
+-- 3. THÔNG BÁO LOAD XONG
+Rayfield:Notify({
+   Title = "Phat Hub Loaded!",
+   Content = "Chào mừng Phát Hacker Lỏ On Top!",
+   Duration = 5,
+   Image = 4483345998,
+})
