@@ -1,0 +1,44 @@
+function generateKey() {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const nums = '0123456789';
+    
+    let key = "Phathackerlo-";
+    
+    // Tạo 8 số ngẫu nhiên
+    for(let i=0; i<8; i++) key += nums.charAt(Math.floor(Math.random() * nums.length));
+    key += "-";
+    // Tạo 8 chữ ngẫu nhiên
+    for(let i=0; i<8; i++) key += chars.charAt(Math.floor(Math.random() * chars.length));
+    
+    return key;
+}
+
+// Khi người dùng bấm nút "Nhận Key":
+const myKey = generateKey();
+console.log(myKey); // Hiển thị ra màn hình cho người dùng copy
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Phát Hacker Lỏ - Key System</title>
+    <style>
+        body { background: #1a1a1a; color: white; text-align: center; font-family: Arial; }
+        button { padding: 15px 30px; font-size: 20px; cursor: pointer; background: #ff0000; color: white; border: none; }
+    </style>
+</head>
+<body>
+    <h1>Hệ thống Key 24h - Phát Hacker Lỏ</h1>
+    <div id="step1">
+        <button onclick="window.open('https://tiktok.com/@phat_hackerlo', '_blank')">1. Follow TikTok Phát Hacker Lỏ</button>
+        <br><br>
+        <button id="nextBtn" disabled onclick="window.location.href='https://linkvertise.com/your-first-link'">2. Vượt Linkvertise 1</button>
+    </div>
+
+    <script>
+        // Mẹo: Dùng localStorage để lưu trạng thái Follow
+        document.querySelector('button').onclick = function() {
+            window.open('https://tiktok.com/@phat_hackerlo', '_blank');
+            document.getElementById('nextBtn').disabled = false; // Mở khóa nút khi bấm follow
+        }
+    </script>
+</body>
+</html>
