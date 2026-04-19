@@ -1,0 +1,23 @@
+<div id="keyBox" style="display:none; padding:20px; background:#333;">
+    <h2 id="generatedKey"></h2>
+    <p>Key này có hiệu lực 24h.</p>
+</div>
+
+<button id="getBtn" onclick="showKey()">Nhận Key</button>
+
+<script>
+function showKey() {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    let key = "Phat-";
+    for(let i=0; i<8; i++) key += chars.charAt(Math.floor(Math.random() * chars.length));
+    key += "-";
+    for(let i=0; i<8; i++) key += chars.charAt(Math.floor(Math.random() * chars.length));
+    
+    document.getElementById('generatedKey').innerText = key;
+    document.getElementById('keyBox').style.display = 'block';
+    document.getElementById('getBtn').style.display = 'none';
+    
+    // Ở đây Phát cần kết nối với Google Apps Script để lưu Key này vào Sheets
+}
+</script>
+
