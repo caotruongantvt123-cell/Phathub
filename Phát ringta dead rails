@@ -1,0 +1,60 @@
+-- PHÁT HACKER LỎ | HỆ THỐNG KEY XỊN 24H
+local KeyVinhVien = "Phát Hacker Lỏ On Top"
+local FilePath = "PhatHackerLo_Auth.txt" -- File lưu Key trong máy
+
+-- Hàm Load Script chính
+local function LoadMainScript()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/erewe23/deadrailsring.github.io/refs/heads/main/ringta.lua"))()
+end
+
+-- 1. KIỂM TRA TRẠNG THÁI (Nếu có Key trong máy)
+if isfile(FilePath) then
+    local data = readfile(FilePath)
+    local key, timestamp = data:match("([^|]+)|([^|]+)")
+    
+    -- Nếu là Key vĩnh viễn
+    if key == KeyVinhVien then
+        LoadMainScript()
+        return
+    end
+    
+    -- Kiểm tra 24h cho Key thường (86400 giây = 24h)
+    if os.time() - tonumber(timestamp) < 86400 then
+        LoadMainScript()
+        return
+    else
+        delfile(FilePath) -- Hết hạn thì xóa file
+    end
+end
+
+-- 2. MENU NHẬP KEY (Nếu chưa có Key hoặc Key hết hạn)
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+local Window = Rayfield:CreateWindow({Name = "PHÁT HACKER LỎ | AUTH"})
+local Tab = Window:CreateTab("Key System", 4483345998)
+
+Tab:CreateInput({
+   Name = "Nhập Key",
+   PlaceholderText = "Key của bạn...",
+   Callback = function(Value)
+      -- Giả sử danh sách 100 key của Phát bắt đầu bằng "Phathackerlo_"
+      if Value == KeyVinhVien then
+         writefile(FilePath, Value .. "|" .. os.time())
+         Rayfield:Destroy()
+         LoadMainScript()
+      elseif string.sub(Value, 1, 13) == "Phathackerlo_" then
+         writefile(FilePath, Value .. "|" .. os.time())
+         Rayfield:Destroy()
+         LoadMainScript()
+      else
+         Rayfield:Notify({Title = "Thất bại", Content = "Key sai hoặc không tồn tại!", Duration = 3})
+      end
+   end,
+})
+
+Tab:CreateButton({
+   Name = "Get key (follow và tim hết video Phat hacker lỏ)",
+   Callback = function()
+      setclipboard("https://tiktok.com/@phat_hackerlo")
+      print("Đã copy link TikTok!")
+   end,
+})
