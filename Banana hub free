@@ -1,0 +1,51 @@
+-- 🍌 BANANA HUB - PERMANENT FREE VERSION
+-- 🛠️ PHÁT HACKER LỎ ON TOP
+
+local KeyDung = "Phat hacker lo script"
+local FilePath = "BananaHub_Auth.txt"
+local ScriptLink = "https://raw.githubusercontent.com/longhihilonghihi-hub/BananaHub/refs/heads/main/CombackVersion"
+
+-- Hàm chạy script chính
+local function LoadBananaHub()
+    loadstring(game:HttpGet(ScriptLink))()
+end
+
+-- Kiểm tra nếu đã có key trước đó
+if isfile(FilePath) then
+    LoadBananaHub()
+    return
+end
+
+-- UI Menu Công nghệ cao (Giữa màn hình)
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+local Window = Rayfield:CreateWindow({
+   Name = "🍌 Banana Hub | Login",
+   LoadingTitle = "Đang xác thực quyền truy cập...",
+   LoadingSubtitle = "by Phát Hacker Lỏ",
+   ConfigurationSaving = {Enabled = false}
+})
+
+local Tab = Window:CreateTab("Authentication", 4483345998)
+
+Tab:CreateInput({
+   Name = "Nhập Key",
+   PlaceholderText = "Điền key tại đây...",
+   Callback = function(Value)
+      if Value == KeyDung then
+         writefile(FilePath, "Authorized") -- Lưu file để lần sau không cần nhập
+         Rayfield:Notify({Title = "Thành công", Content = "Chào mừng đến với Banana Hub!", Duration = 3})
+         Rayfield:Destroy() -- Xóa menu login
+         LoadBananaHub()
+      else
+         Rayfield:Notify({Title = "Sai Key", Content = "Key không hợp lệ, thử lại nhé!", Duration = 3})
+      end
+   end,
+})
+
+Tab:CreateButton({
+   Name = "Join Discord",
+   Callback = function()
+      setclipboard("https://discord.gg/UCU2vVdmP")
+      Rayfield:Notify({Title = "Đã copy", Content = "Link Discord đã được copy vào khay nhớ tạm!", Duration = 3})
+   end,
+})
